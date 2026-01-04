@@ -29,6 +29,9 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            implementation(libs.ktor.client.android )
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -39,6 +42,16 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
+            implementation(libs.kotlinx.serialization)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.koin.core)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.ios)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -47,15 +60,15 @@ kotlin {
 }
 
 android {
-    namespace = "org.amitkundu.gamehub"
+    namespace = "org.amitkundu.coreNetwork"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "org.amitkundu.gamehub"
+        //applicationId = "org.amitkundu.gamehub"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+//        versionCode = 1
+//        versionName = "1.0"
     }
     packaging {
         resources {
