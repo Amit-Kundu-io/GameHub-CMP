@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
 
     alias(libs.plugins.kotlinx.serialization)
 }
@@ -27,13 +28,15 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
-
         }
+
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -44,30 +47,26 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            implementation(libs.kotlinx.serialization)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.koin.core)
-
-            //navigation
-            implementation(libs.navigation.compose.v290)
-            implementation(libs.kotlinx.serialization)
         }
+
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
+
+
         iosMain.dependencies {
 
 
-        }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
         }
     }
 }
 
 android {
-    namespace = "org.amitkundu.features.home"
+    namespace = "org.amitkundu.theme"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        //applicationId = "org.amitkundu.gamehub"
+//        applicationId = "org.amitkunduio.project"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
 //        versionCode = 1
@@ -92,4 +91,5 @@ android {
 dependencies {
     debugImplementation(compose.uiTooling)
 }
+
 

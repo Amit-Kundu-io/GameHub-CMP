@@ -1,5 +1,6 @@
 package org.amitkundu.gamehub
 
+import amitkundu.theme.AndroidSystemBars
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,6 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            AndroidSystemBars()
             App()
         }
     }

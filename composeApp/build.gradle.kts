@@ -6,6 +6,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+
+    alias(libs.plugins.kotlinx.serialization)
+
 }
 
 kotlin {
@@ -27,12 +30,16 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
+
+            implementation(projects.theme)
+
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
 
             implementation(projects.coreNetwork)
+            implementation(projects.theme)
 
 
             implementation(compose.runtime)
@@ -47,6 +54,10 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.koin.core)
+
+            //navigation
+            implementation(libs.navigation.compose.v290)
+            implementation(libs.kotlinx.serialization)
 
         }
         iosMain.dependencies {

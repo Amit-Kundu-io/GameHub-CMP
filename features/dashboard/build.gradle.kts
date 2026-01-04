@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -33,6 +35,11 @@ kotlin {
 
         }
         commonMain.dependencies {
+
+            implementation(projects.features.search)
+            implementation(projects.features.favorite)
+            implementation(projects.features.home)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -45,6 +52,13 @@ kotlin {
             implementation(libs.kotlinx.serialization)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.core)
+
+            implementation(compose.materialIconsExtended)
+
+
+            //navigation
+            implementation(libs.navigation.compose.v290)
+            implementation(libs.kotlinx.serialization)
         }
         iosMain.dependencies {
 
