@@ -1,5 +1,6 @@
 package org.amitkundu.gamehub
 
+import amitkundu.dashboard.DashboardScreen
 import amitkundu.theme.GameHubTheme
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -8,6 +9,6 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
     GameHubTheme {
-
+        DashboardScreen()
     }
 }

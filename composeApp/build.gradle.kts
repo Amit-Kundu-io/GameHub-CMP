@@ -41,6 +41,11 @@ kotlin {
             implementation(projects.coreNetwork)
             implementation(projects.theme)
 
+            implementation(projects.features.home)
+            implementation(projects.features.search)
+            implementation(projects.features.favorite)
+            implementation(projects.features.dashboard)
+
 
             implementation(compose.runtime)
             implementation(compose.foundation)

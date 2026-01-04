@@ -23,13 +23,12 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun DashboardScreen(
-    navigateToLoginScreen: () -> Unit,
-) {
+fun DashboardScreen() {
     val bottomNavController = rememberNavController()
     val currentRoute = bottomNavController.currentBackStackEntryAsState().value?.destination?.route
 
@@ -70,7 +69,7 @@ fun DashboardScreen(
                 ) {
                     bottomNavItems.forEach { item ->
                         NavigationBarItem(
-                            selected = currentRoute == item,
+                            selected = currentRoute == item.route,
                             onClick = {
                                 bottomNavController.navigate(item.route ?: "") {
                                     popUpTo(bottomNavController.graph.startDestinationId) {
@@ -116,7 +115,7 @@ fun DashboardScreen(
                     }
                 )
         ) {
-
+            BottomNavHost(navController = bottomNavController)
         }
     }
 }

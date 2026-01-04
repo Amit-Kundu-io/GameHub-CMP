@@ -1,5 +1,9 @@
 package amitkundu.dashboard
 
+import amitkundu.favorite.navigation.favoriteNavigation
+import amitkundu.home.navigation.HomeRouts
+import amitkundu.home.navigation.homeNavigation
+import amitkundu.search.navigation.searchNavigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -8,67 +12,17 @@ import androidx.navigation.compose.NavHost
 @Composable
 fun BottomNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    navigateToLoginScreen: () -> Unit,
-    startingRoute: String,
-
     ) {
 
-
-    val starting = when (startingRoute) {
-        FileFrogUtils.HOME -> HomeScreenRoute
-        FileFrogUtils.TEAM -> TeamGraph
-        FileFrogUtils.CLIENTS -> ClientGraph
-        FileFrogUtils.TASKS -> MyTaskGraph
-        FileFrogUtils.SETTINGS -> SettingGraph
-        else -> HomeScreenRoute
-    }
 
 
     NavHost(
         navController = navController,
-        startDestination = starting,
+        startDestination = HomeRouts.HomeGraph,
         //modifier = modifier
     ) {
-        homeNavigation(
-            navController,
-            onBusinessProfileClick = { navController.navigate(MyBusinessRoute) },
-            navigateToProfile = {
-                navController.navigate(PersonalProfileRoute)
-            }
-        )
-        teamNavigation(
-            navController,
-            onBusinessProfileClick = { navController.navigate(MyBusinessRoute) },
-            navigateToProfile = {
-                navController.navigate(PersonalProfileRoute)
-            }
-        )
-
-        clientsNavigation(
-            navController,
-            onBusinessProfileClick = {
-                navController.navigate(MyBusinessRoute)
-            },
-            navigateToProfile = {
-                navController.navigate(PersonalProfileRoute)
-            }
-        )
-        myTaskNavigation(
-            navController,
-            onBusinessProfileClick = {
-                navController.navigate(MyBusinessRoute)
-            },
-            navigateToProfile = {
-                navController.navigate(PersonalProfileRoute)
-            })
-        settingNavigation(
-            navController,
-            navigateToLoginScreen = navigateToLoginScreen,
-            onBusinessProfileClick = { navController.navigate(MyBusinessRoute) },
-            navigateToProfile = {
-                navController.navigate(PersonalProfileRoute)
-            }
-        )
+        homeNavigation(navController)
+        favoriteNavigation(navController)
+        searchNavigation(navController)
     }
 }

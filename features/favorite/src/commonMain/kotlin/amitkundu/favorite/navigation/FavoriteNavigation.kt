@@ -9,7 +9,6 @@ import androidx.navigation.navigation
 
 fun NavGraphBuilder.favoriteNavigation(
     navController: NavHostController,
-
     ) {
 
     navigation<FavoriteRouts.FavoriteGraph>(startDestination = FavoriteRouts.FavoriteScreenRoute) {
