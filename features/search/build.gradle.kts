@@ -30,7 +30,6 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
-            implementation(libs.ktor.client.android )
 
         }
         commonMain.dependencies {
@@ -44,13 +43,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(libs.kotlinx.serialization)
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.core)
         }
         iosMain.dependencies {
-            implementation(libs.ktor.client.ios)
+
 
         }
         commonTest.dependencies {
@@ -60,7 +57,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.amitkundu.coreNetwork"
+    namespace = "org.amitkundu.features.search"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
