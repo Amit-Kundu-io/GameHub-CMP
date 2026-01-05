@@ -1,5 +1,6 @@
 package amitkundu.home.ui.GameScreen
 
+import amitkundu.theme.RememberIsScrollingUp.rememberIsScrollingUp
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -23,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +36,7 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun HomeScreen(
+    onScrollChange: (Boolean) -> Unit,
     viewModel: HomeViewModel = koinViewModel()
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -44,7 +47,7 @@ fun HomeScreen(
         verticalArrangement = Arrangement.Center
     ){
 
-        SubHomeScreen(state)
+        SubHomeScreen(state, onScrollChange = onScrollChange)
 
 
     }
@@ -53,8 +56,15 @@ fun HomeScreen(
 @OptIn(ExperimentalMaterial3Api::class,
     ExperimentalAnimationApi::class)
 @Composable
-private fun SubHomeScreen(state: GameScreenState) {
+private fun SubHomeScreen(state: GameScreenState, onScrollChange: (Boolean) -> Unit) {
     val listState = rememberLazyListState()
+    val isScrollingUp = rememberIsScrollingUp(listState)
+
+
+    LaunchedEffect(isScrollingUp) {
+        onScrollChange(isScrollingUp)
+    }
+
 
     Scaffold(
         topBar = {

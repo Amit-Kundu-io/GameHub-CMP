@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 @Composable
 fun BottomNavHost(
     navController: NavHostController,
+    onScrollChange: (Boolean) -> Unit
     ) {
 
 
@@ -21,7 +22,7 @@ fun BottomNavHost(
         startDestination = HomeRouts.HomeGraph,
         //modifier = modifier
     ) {
-        homeNavigation(navController)
+        homeNavigation(navController, onScrollChange = onScrollChange)
         favoriteNavigation(navController)
         searchNavigation(navController)
     }

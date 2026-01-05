@@ -7,11 +7,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 
 
-fun NavGraphBuilder.homeNavigation(navController: NavHostController,){
+fun NavGraphBuilder.homeNavigation(navController: NavHostController, onScrollChange: (Boolean) -> Unit){
 
     navigation<HomeRouts.HomeGraph>(startDestination = HomeRouts.HomeScreenRoute) {
         composable<HomeRouts.HomeScreenRoute> {
-            HomeScreen()
+            HomeScreen(
+                onScrollChange = onScrollChange
+            )
         }
     }
 }

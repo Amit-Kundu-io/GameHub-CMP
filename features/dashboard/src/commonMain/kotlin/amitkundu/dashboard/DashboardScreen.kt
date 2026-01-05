@@ -17,6 +17,10 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -31,10 +35,15 @@ import androidx.navigation.compose.rememberNavController
 fun DashboardScreen() {
     val bottomNavController = rememberNavController()
     val currentRoute = bottomNavController.currentBackStackEntryAsState().value?.destination?.route
+    var isScrollingUp by remember { mutableStateOf(true) }
 
-    val showBottomBar = bottomNavRoutes.any { route ->
+    val routeAllowsBottomBar = bottomNavRoutes.any { route ->
         currentRoute?.contains(route ?: "", ignoreCase = true) == true
     }
+
+    val showBottomBar = routeAllowsBottomBar && isScrollingUp
+
+
 
 //    var isShowBottomNav by remember {
 //        mutableStateOf(true)
@@ -115,7 +124,8 @@ fun DashboardScreen() {
                     }
                 )
         ) {
-            BottomNavHost(navController = bottomNavController)
+            BottomNavHost(navController = bottomNavController,
+                onScrollChange = { isScrollingUp = it })
         }
     }
 }
