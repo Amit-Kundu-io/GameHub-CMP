@@ -6,4 +6,5 @@ import org.koin.dsl.module
 
 val getNetworkModule = module {
     single { KtorClient.getInstance() }
+
 }

@@ -8,7 +8,7 @@ sealed class NetworkResult<out T> {
     ) : NetworkResult<T>()
 
     data class Error(
-        val message: String,
+        val message: String?,
         val throwable: Throwable? = null
     ) : NetworkResult<Nothing>()
 
