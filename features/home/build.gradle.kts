@@ -32,9 +32,13 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
+            implementation(libs.ktor.client.android )
 
         }
         commonMain.dependencies {
+
+            implementation(projects.coreNetwork)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -45,17 +49,22 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(libs.kotlinx.serialization)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.core)
+
+
 
             //navigation
             implementation(libs.navigation.compose.v290)
             implementation(libs.kotlinx.serialization)
         }
         iosMain.dependencies {
-
+            implementation(libs.ktor.client.ios)
 
         }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
