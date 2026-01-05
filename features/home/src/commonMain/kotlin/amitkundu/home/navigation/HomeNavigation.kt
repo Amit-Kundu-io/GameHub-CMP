@@ -1,6 +1,6 @@
 package amitkundu.home.navigation
 
-import amitkundu.home.ui.HomeScreen
+import amitkundu.home.ui.GameScreen.HomeScreen
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable

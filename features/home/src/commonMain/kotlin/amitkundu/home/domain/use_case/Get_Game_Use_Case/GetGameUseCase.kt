@@ -15,6 +15,7 @@ class GetGameUseCase (
     operator fun invoke() : Flow<NetworkResult<GameResponse>> = flow {
 
         try {
+            emit(NetworkResult.Loading)
             val data = repo.getGames()
             emit(NetworkResult.Success(data))
         }

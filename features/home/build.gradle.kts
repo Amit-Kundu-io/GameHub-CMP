@@ -54,6 +54,10 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.core)
 
+            implementation(libs.koin.compose.viewmodel)
+
+            implementation(libs.coil)
+            implementation(libs.coil.ktor)
 
 
             //navigation

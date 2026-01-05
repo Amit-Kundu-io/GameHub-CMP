@@ -2,7 +2,7 @@ package amitkundu.home.data.model.game
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Result(
+data class Game(
     val id: Int,
     val name: String,
     val slug: String,
