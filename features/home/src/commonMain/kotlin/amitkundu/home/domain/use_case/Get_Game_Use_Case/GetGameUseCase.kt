@@ -8,6 +8,7 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.io.IOException
 
 class GetGameUseCase (
     private val repo: GameRepo
@@ -18,6 +19,10 @@ class GetGameUseCase (
             emit(NetworkResult.Loading)
             val data = repo.getGames()
             emit(NetworkResult.Success(data))
+        }
+        catch (e: IOException) {
+            emit(NetworkResult.Error("Check your internet connection"))
+
         }
         catch (e : Exception){
             emit(NetworkResult.Error(e.message))
