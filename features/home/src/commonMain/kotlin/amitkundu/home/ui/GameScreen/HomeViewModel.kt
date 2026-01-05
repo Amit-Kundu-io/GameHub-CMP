@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 
 class HomeViewModel(
@@ -22,7 +21,13 @@ class HomeViewModel(
         getGames()
     }
 
-    fun getGames(){
+    fun refresh() {
+        _state.update { it.copy(isRefreshing = true) }
+        getGames(false)
+
+    }
+
+    fun getGames(isLoadingShow: Boolean = true) {
         useCase.invoke()
             .onEach {result ->
             when(result){
@@ -30,6 +35,7 @@ class HomeViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
+                            isRefreshing= false,
                             error = result.message ?: "Error"
                         )
                     }
@@ -45,6 +51,8 @@ class HomeViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
+                            isRefreshing = false,
+                            error = "",
                             gameList = result.data.results
                         )
                     }
