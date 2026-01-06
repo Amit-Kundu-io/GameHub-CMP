@@ -13,7 +13,7 @@ fun GameHubTheme(
     val isDark = isSystemInDarkTheme()
 
     MaterialTheme(
-        colorScheme =LightColorScheme,// if (isDark) DarkColorScheme else LightColorScheme,
+        colorScheme =DarkColorScheme,// if (isDark) DarkColorScheme else LightColorScheme,
         typography = Typography,
         content = content
     )

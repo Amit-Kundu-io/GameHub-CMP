@@ -2,6 +2,7 @@ package amitkundu.dashboard
 
 import amitkundu.theme.BackgroundDark
 import amitkundu.theme.PrimaryBlue
+import amitkundu.theme.SecondaryPurple
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -98,8 +99,8 @@ fun DashboardScreen() {
                             },
                             icon = {
                                 Icon(
-                                    imageVector = if (currentRoute == item.route) item.selectIcon else item.unselectIcon,
-                                    tint = Color.Unspecified,
+                                    imageVector =  item.selectIcon,
+                                    tint = if (currentRoute == item.route) SecondaryPurple else Color.White,
                                     contentDescription = null
                                 )
                             },
@@ -109,12 +110,16 @@ fun DashboardScreen() {
                                     style = MaterialTheme.typography.labelSmall.copy(
                                         fontSize = 11.sp,
                                         fontWeight = if (currentRoute == item.route) FontWeight.SemiBold else FontWeight.Medium,
-                                        color = if (currentRoute == item.route) Color.Black else Color.Gray
+                                        color = if (currentRoute == item.route) SecondaryPurple else Color.White
                                     )
                                 )
                             },
                             colors = NavigationBarItemDefaults.colors(
-                                indicatorColor = Color.Transparent
+                                selectedIconColor = PrimaryBlue,
+                                selectedTextColor = PrimaryBlue,
+                                unselectedIconColor = Color.Gray,
+                                unselectedTextColor = Color.Gray,
+                                indicatorColor = PrimaryBlue.copy(alpha = 0.15f)
                             )
                         )
                     }
