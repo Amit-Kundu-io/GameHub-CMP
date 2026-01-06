@@ -67,11 +67,12 @@ fun GameCard(
                     .height(200.dp)
             ) {
                 if (imageUrl.isNotEmpty()) {
+
                     AsyncImage(
                         model = imageUrl,
                         contentDescription = title,
                         modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Crop,
                     )
                 } else {
                     // Fallback gradient if no image provided
@@ -98,8 +99,11 @@ fun GameCard(
                                 startY = 0f,
                                 endY = 600f
                             )
-                        )
-                )
+                        ),
+                    contentAlignment = Alignment.Center
+                ) {
+
+                }
             }
 
             // Trending Badge
