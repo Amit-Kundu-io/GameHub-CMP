@@ -78,8 +78,11 @@ fun GameCard(
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(CardGradient)
-                    )
+                            .background(CardGradient),
+                        contentAlignment = Alignment.Center
+                    ){
+                        Text("No Image")
+                    }
                 }
 
                 // Dark gradient overlay
