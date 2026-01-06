@@ -36,6 +36,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.coreNetwork)
+            implementation(projects.theme)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -56,6 +57,7 @@ kotlin {
 
             implementation(libs.coil)
             implementation(libs.coil.ktor)
+            implementation(compose.materialIconsExtended)
 
             //navigation
             implementation(libs.navigation.compose.v290)

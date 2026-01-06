@@ -172,7 +172,7 @@ private fun SubHomeScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(PrimaryBlue.copy(alpha = 0.6f)),
+                        .background(BackgroundDark.copy(alpha = 0.6f)),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator()
