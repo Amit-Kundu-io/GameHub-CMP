@@ -1,5 +1,7 @@
 package amitkundu.dashboard
 
+import amitkundu.theme.BackgroundDark
+import amitkundu.theme.PrimaryBlue
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -22,6 +24,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
@@ -69,12 +73,16 @@ fun DashboardScreen() {
                 NavigationBar(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .border(
-                            width = 0.5.dp,
-                            color = Color.LightGray,
-                            shape = RectangleShape
-                        ),
-                    containerColor = Color.White
+                        .drawBehind {
+                            val strokeWidth = 0.5.dp.toPx()
+                            drawLine(
+                                color = PrimaryBlue,
+                                start = Offset(0f, 0f),
+                                end = Offset(size.width, 0f),
+                                strokeWidth = strokeWidth
+                            )
+                        },
+                    containerColor = BackgroundDark
                 ) {
                     bottomNavItems.forEach { item ->
                         NavigationBarItem(
@@ -114,16 +122,7 @@ fun DashboardScreen() {
             }
         }
     ) { padding ->
-        Box(
-            modifier = Modifier
-                .then(
-                    if (showBottomBar) {
-                        Modifier.padding(bottom = 40.dp)
-                    } else {
-                        Modifier
-                    }
-                )
-        ) {
+        Box() {
             BottomNavHost(navController = bottomNavController,
                 onScrollChange = { isScrollingUp = it })
         }

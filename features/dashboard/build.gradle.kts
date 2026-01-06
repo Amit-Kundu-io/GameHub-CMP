@@ -36,6 +36,8 @@ kotlin {
         }
         commonMain.dependencies {
 
+            implementation(projects.theme)
+
             implementation(projects.features.search)
             implementation(projects.features.favorite)
             implementation(projects.features.home)

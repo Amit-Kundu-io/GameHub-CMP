@@ -12,7 +12,7 @@ import androidx.core.view.WindowCompat
 @Composable
 fun AndroidSystemBars() {
     val view = LocalView.current
-    val isDark = false// isSystemInDarkTheme()
+    val isDark = true// isSystemInDarkTheme()
 
     SideEffect {
         val window = (view.context as Activity).window
