@@ -7,10 +7,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 
 
-fun NavGraphBuilder.searchNavigation(navController: NavHostController,){
+fun NavGraphBuilder.searchNavigation(navController: NavHostController, onScrollChange: (Boolean) -> Unit,){
     navigation<SearchRouts.SearchGraph>(startDestination = SearchRouts.SearchScreenRoute) {
         composable<SearchRouts.SearchScreenRoute> {
-            SearchScreen()
+            SearchScreen(
+                onScrollChange = onScrollChange
+            )
         }
     }
 }

@@ -2,12 +2,9 @@ package amitkundu.search.ui
 
 import amitkundu.theme.BackgroundDark
 import amitkundu.theme.GameCard.GameCard
+import amitkundu.theme.RememberIsScrollingUp.rememberIsScrollingUp
 import amitkundu.theme.SurfaceDark
 import amitkundu.theme.TextPrimary
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -34,13 +31,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -50,6 +44,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
+    onScrollChange: (Boolean) -> Unit,
     viewModel: SearchViewModel = koinViewModel()
 ){
 
@@ -57,7 +52,12 @@ fun SearchScreen(
 
     val q by viewModel.query.collectAsStateWithLifecycle()
     val listState = rememberLazyListState()
+    val isScrollingUp = rememberIsScrollingUp(listState)
 
+
+    LaunchedEffect(isScrollingUp) {
+        onScrollChange(isScrollingUp)
+    }
 
     Scaffold(
         topBar = {
@@ -87,6 +87,7 @@ fun SearchScreen(
                 .padding(vertical = 8.dp)
         ) {
 
+
             OutlinedTextField(
                 value = q,
                 onValueChange = {
@@ -114,6 +115,7 @@ fun SearchScreen(
                 modifier = Modifier.fillMaxWidth(),
 
                 )
+
 
 
             Box(
@@ -147,15 +149,15 @@ fun SearchScreen(
                         { game ->
 
 
-                                Column {
-                                    GameCard(
-                                        title = game.name,
-                                        imageUrl = game.background_image ?: "",
-                                        rating = game.rating.toFloat(),
-                                        onlineCount = "${game.playtime} online",
-                                    )
-                                    Spacer(modifier = Modifier.height(16.dp))
-                                }
+                            Column {
+                                GameCard(
+                                    title = game.name,
+                                    imageUrl = game.background_image ?: "",
+                                    rating = game.rating.toFloat(),
+                                    onlineCount = "${game.playtime} online",
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                            }
 
                         }
                     }

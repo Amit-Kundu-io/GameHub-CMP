@@ -24,6 +24,6 @@ fun BottomNavHost(
     ) {
         homeNavigation(navController, onScrollChange = onScrollChange)
         favoriteNavigation(navController)
-        searchNavigation(navController)
+        searchNavigation(navController, onScrollChange = onScrollChange)
     }
 }
