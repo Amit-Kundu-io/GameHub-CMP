@@ -19,5 +19,3 @@ captures
 node_modules/
 
 
-# Ignore AppConfig (secrets)
-theme/src/commonMain/kotlin/amitkundu/theme/AppConfig
