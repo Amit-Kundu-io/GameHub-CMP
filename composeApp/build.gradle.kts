@@ -35,6 +35,10 @@ kotlin {
 
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            implementation(libs.ktor.client.android )
+            implementation(libs.koin.compose)
+            implementation(libs.koin.androidx.compose)
         }
         commonMain.dependencies {
 
@@ -68,7 +72,6 @@ kotlin {
         iosMain.dependencies {
 
         }
-
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
