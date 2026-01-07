@@ -3,12 +3,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-
-    alias(libs.plugins.kotlinx.serialization)
-
 }
 
 kotlin {
@@ -17,7 +14,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -27,31 +24,17 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
-
-            implementation(projects.theme)
-
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
-            implementation(libs.ktor.client.android )
             implementation(libs.koin.compose)
             implementation(libs.koin.androidx.compose)
+
         }
         commonMain.dependencies {
-
-            implementation(projects.coreNetwork)
-            implementation(projects.coreDatabase)
-            implementation(projects.theme)
-
-            implementation(projects.features.home)
-            implementation(projects.features.search)
-            implementation(projects.features.favorite)
-            implementation(projects.features.dashboard)
-
-
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -61,16 +44,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            implementation(libs.navigation.compose)
-
-            implementation(libs.koin.core)
-
-            //navigation
-            implementation(libs.navigation.compose.v290)
             implementation(libs.kotlinx.serialization)
-
+            implementation(libs.koin.core)
         }
         iosMain.dependencies {
+
 
         }
         commonTest.dependencies {
@@ -80,15 +58,15 @@ kotlin {
 }
 
 android {
-    namespace = "org.amitkundu.gamehub"
+    namespace = "org.amitkundu.coreDatabase"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "org.amitkundu.gamehub"
+        //applicationId = "org.amitkundu.gamehub"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+//        versionCode = 1
+//        versionName = "1.0"
     }
     packaging {
         resources {

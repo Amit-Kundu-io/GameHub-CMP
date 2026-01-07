@@ -30,6 +30,7 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 include(":core-network")
+include(":core-database")
 include(":theme")
 include(":features:dashboard")
 include(":features:favorite")
