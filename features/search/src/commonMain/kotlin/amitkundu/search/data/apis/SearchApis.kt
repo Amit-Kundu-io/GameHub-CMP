@@ -1,7 +1,6 @@
 package amitkundu.search.data.apis
 
 import amitkundu.search.data.model.game.GameResponse
-import amitkundu.theme.AppConfig.AppConfig
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
