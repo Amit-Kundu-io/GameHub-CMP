@@ -36,6 +36,9 @@ kotlin {
 
         }
         commonMain.dependencies {
+
+            implementation(projects.theme)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
