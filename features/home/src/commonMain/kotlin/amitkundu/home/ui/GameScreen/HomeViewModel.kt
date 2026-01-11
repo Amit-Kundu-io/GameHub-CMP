@@ -1,6 +1,9 @@
 package amitkundu.home.ui.GameScreen
 
 import amitkundu.coreNetwork.util.NetworkResult
+import amitkundu.database.GameDao
+import amitkundu.database.GameEntity
+import amitkundu.home.data.model.game.Game
 import amitkundu.home.domain.use_case.Get_Game_Use_Case.GetGameUseCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +12,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val useCase: GetGameUseCase
+    private val useCase: GetGameUseCase,
+    private val dao: GameDao
 ) : ViewModel(){
 
     private val _state = MutableStateFlow(GameScreenState())
@@ -59,6 +64,18 @@ class HomeViewModel(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun saveGame(game : Game){
+        viewModelScope.launch {
+            dao.insert(GameEntity(
+                GameId = game.id,
+                name = game.name,
+                playtime = game.playtime,
+                background_image = game.background_image ?: "",
+                rating = game.rating,
+            ))
+        }
     }
 
 }

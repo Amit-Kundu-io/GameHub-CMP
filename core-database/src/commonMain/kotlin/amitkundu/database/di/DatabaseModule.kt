@@ -11,6 +11,6 @@ fun getDatabaseModule()  = module {
     }
 
     single {
-        get<AppDatabase>().taskDao()
+        get<AppDatabase>().gameDao()
     }
 }

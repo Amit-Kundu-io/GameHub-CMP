@@ -9,5 +9,5 @@ import androidx.room.RoomDatabase
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun taskDao(): GameDao
+    abstract fun gameDao(): GameDao
 }

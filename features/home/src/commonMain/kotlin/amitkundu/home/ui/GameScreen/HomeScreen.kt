@@ -1,5 +1,6 @@
 package amitkundu.home.ui.GameScreen
 
+import amitkundu.home.data.model.game.Game
 import amitkundu.theme.BackgroundDark
 import amitkundu.theme.GameCard.GameCard
 import amitkundu.theme.PrimaryBlue
@@ -42,6 +43,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import io.ktor.sse.COLON
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -63,6 +65,9 @@ fun HomeScreen(
             state, onScrollChange = onScrollChange,
             onRefresh = {
                 viewModel.refresh()
+            },
+            onFavoriteClick = {
+                viewModel.saveGame(it)
             }
         )
     }
@@ -75,6 +80,7 @@ private fun SubHomeScreen(
     state: GameScreenState,
     onScrollChange: (Boolean) -> Unit,
     onRefresh: () -> Unit,
+    onFavoriteClick: (Game) -> Unit,
 ) {
     val listState = rememberLazyListState()
     val isScrollingUp = rememberIsScrollingUp(listState)
@@ -159,6 +165,8 @@ private fun SubHomeScreen(
                                     imageUrl = game.background_image ?: "",
                                     rating = game.rating.toFloat(),
                                     onlineCount = "${game.playtime} online",
+                                    showFavorite = true,
+                                    onFavoriteClick = { onFavoriteClick(game) }
                                 )
                                 Spacer(modifier = Modifier.height(16.dp))
                             }

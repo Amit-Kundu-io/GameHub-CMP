@@ -37,6 +37,8 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.coreNetwork)
             implementation(projects.theme)
+            implementation(projects.coreDatabase)
+
 
             implementation(compose.runtime)
             implementation(compose.foundation)

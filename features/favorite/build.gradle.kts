@@ -38,6 +38,8 @@ kotlin {
         commonMain.dependencies {
 
             implementation(projects.theme)
+            implementation(projects.coreDatabase)
+
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -51,6 +53,8 @@ kotlin {
             implementation(libs.kotlinx.serialization)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.core)
+
+            implementation(libs.koin.compose.viewmodel)
 
             //navigation
             implementation(libs.navigation.compose.v290)

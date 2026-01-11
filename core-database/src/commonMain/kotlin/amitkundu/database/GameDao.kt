@@ -2,15 +2,17 @@ package amitkundu.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GameDao {
 
-    @Insert
-    suspend fun insert(task: GameEntity)
 
-    @Query("SELECT * FROM tasks")
-    fun getAll(): Flow<List<GameEntity>>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(game: GameEntity)
+
+    @Query("SELECT * FROM games ORDER BY id DESC")
+    fun getAllGames(): Flow<List<GameEntity>>
 }

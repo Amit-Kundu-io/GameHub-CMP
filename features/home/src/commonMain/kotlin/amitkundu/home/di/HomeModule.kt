@@ -19,6 +19,6 @@ fun getHomeModule() = module {
     factory { GetGameUseCase(get()) }
 
     viewModel {
-        HomeViewModel(get())
+        HomeViewModel(get(),get())
     }
 }

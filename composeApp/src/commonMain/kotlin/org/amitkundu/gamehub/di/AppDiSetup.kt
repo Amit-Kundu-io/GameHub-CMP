@@ -2,6 +2,7 @@ package org.amitkundu.gamehub.di
 
 import amitkundu.coreNetwork.di.getNetworkModule
 import amitkundu.database.di.getDatabaseModule
+import amitkundu.favorite.di.getFavoriteModule
 import amitkundu.home.di.getHomeModule
 import amitkundu.search.di.getSearchModule
 import org.koin.core.KoinApplication
@@ -15,7 +16,9 @@ fun initKoin(koinApplication: ((KoinApplication) -> Unit)? = null){
             getNetworkModule,
             getHomeModule(),
             getSearchModule(),
-            getDatabaseModule()
+            getDatabaseModule(),
+            getFavoriteModule()
+
         )
     }
 }
