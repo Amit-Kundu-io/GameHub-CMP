@@ -19,7 +19,7 @@ interface GameDao {
     @Query("DELETE FROM games WHERE id = :id")
     fun deleteGame(id: Int)
 
-    @Query("SELECT COUNT(*) FROM games WHERE GameId = :gameId")
+    @Query("SELECT COUNT(*) FROM games WHERE id = :gameId")
     suspend fun isGameExists(gameId: Int): Int
 
 }

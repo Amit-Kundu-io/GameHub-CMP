@@ -134,7 +134,8 @@ private fun SubFavoriteScreen(
                         }
                     }
 
-                } else {
+                }
+                else {
                     val games = state.data.orEmpty()
                     items(
                         items = games,
