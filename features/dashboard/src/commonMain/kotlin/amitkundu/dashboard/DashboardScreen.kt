@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -90,7 +91,7 @@ fun DashboardScreen() {
                             selected = currentRoute == item.route,
                             onClick = {
                                 bottomNavController.navigate(item.route ?: "") {
-                                    popUpTo(bottomNavController.graph.startDestinationId) {
+                                    popUpTo(bottomNavController.graph.findStartDestination().id) {
                                         saveState = true
                                     }
                                     launchSingleTop = true
