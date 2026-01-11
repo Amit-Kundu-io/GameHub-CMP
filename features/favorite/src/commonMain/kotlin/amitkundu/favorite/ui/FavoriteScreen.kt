@@ -69,7 +69,12 @@ fun FavoriteScreen(
             lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
-    SubFavoriteScreen(state)
+    SubFavoriteScreen(
+        state,
+        onDelete = {
+            viewModel.deleteGame(it)
+        }
+    )
 
 }
 
@@ -77,7 +82,10 @@ fun FavoriteScreen(
 @OptIn(ExperimentalMaterial3Api::class,
     ExperimentalAnimationApi::class)
 @Composable
-private fun SubFavoriteScreen(state: FavoriteState) {
+private fun SubFavoriteScreen(
+    state: FavoriteState,
+    onDelete: (Int) -> Unit
+) {
     val listState = rememberLazyListState()
 
 
@@ -137,6 +145,11 @@ private fun SubFavoriteScreen(state: FavoriteState) {
                             imageUrl = game.background_image ?: "",
                             rating = game.rating.toFloat(),
                             onlineCount = "${game.playtime} online",
+                            showFavorite = true,
+                            isFavorite = true,
+                            onFavoriteClick = {
+                                onDelete(game.id)
+                            }
                         )
                     }
                 }

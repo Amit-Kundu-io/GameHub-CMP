@@ -3,7 +3,6 @@ package amitkundu.favorite.ui
 import amitkundu.database.GameDao
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -34,5 +33,14 @@ class FavoriteViewModel (
         }
     }
 
+    fun deleteGame(id: Int) {
+        viewModelScope.launch {
+            try {
+                dao.deleteGame(id)
+            } catch (e: Exception) {
+
+            }
+        }
+    }
 
 }

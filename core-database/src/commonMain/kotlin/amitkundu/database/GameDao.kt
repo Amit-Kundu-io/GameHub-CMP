@@ -15,4 +15,11 @@ interface GameDao {
 
     @Query("SELECT * FROM games ORDER BY id DESC")
     fun getAllGames(): Flow<List<GameEntity>>
+
+    @Query("DELETE FROM games WHERE id = :id")
+    fun deleteGame(id: Int)
+
+    @Query("SELECT COUNT(*) FROM games WHERE GameId = :gameId")
+    suspend fun isGameExists(gameId: Int): Int
+
 }
